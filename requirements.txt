@@ -1,3 +1,6 @@
 virtualenv
 django
 django-scheduler
+django-crispy-forms
+postgres
+psycopg2

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="theme-color" content="#000000">
+	<link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+	<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="{% static 'likes.js' %}"></script>
+    
+    <title>Schedulify</title>
+</head>
+<body>
+    <nav style="background-color:#0e8436">
+        <div>
+            <ul>
+                <li>
+                    <a class="button" style="color: #f8f9fa;" href='/events-api/'>event-API</a>
+                </li>
+                <li>
+                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}'>My Events</a>
+                </li>
+                <li>
+                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/eventcreate/'>Add Event</a>
+                </li>
+                <li>
+                    <a class="button" style="color: #f8f9fa;" href='/logout/'>Logout</a>
+                </li>
+                <form style="display: inline" action="">
+                    <input type="text" style="float:inline-end;" name="search user" placeholder="Search">
+                </form>
+            </ul>
+        </div>
+    </nav>
+    {% for event in events %}
+    <ul style="border-style: solid;background-color: white;position:relative;width: 750px;border: 15px solid green;padding: 50px;margin: 10px;">
+        <h3>{{event.user.username}} posted a message</h3>
+        <h4 style="border-style: hidden">Title- {{ event.title }}</h4>
+            <li>Content - {{ event.description }}</li>
+            <li>Start time - {{event.start_date_time}}</li>
+            <li>End time - {{event.end_date_time}}</li>
+            <p></p>
+    </ul>
+    {% endfor %}
+</body>
+

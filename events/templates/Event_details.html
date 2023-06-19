@@ -45,20 +45,23 @@
             </ul>
         </div>
     </nav>
-    {% if length == 0 %}
-    <p style="text-align: left;"> No Invited events so far</p>
-    {% else %}
-    {% for event in events %}
     <ul style="border-style: solid;background-color: white;position:relative;width: 750px;border: 15px solid green;padding: 50px;margin: 10px;">
-        <a style="border-style: hidden; text-decoration:brown" href="/eventsList/{{ user.id }}/{{ event.id }}/">{{event.user.username}} scheduled a event</a>
+        <h3>{{event.user.username}} scheduled a event</h3>
         <h4 style="border-style: hidden">Title- {{ event.title }}</h4>
         <p style="text-align: left;">Content - {{ event.description }}<p>
         <p style="text-align: left; color: darkorchid;">Start time - {{event.start_date_time}}</p>
         <p style="text-align: left; color: darkorchid;">End time - {{event.end_date_time}}</p>
         <!-- <input type="submit" style="display:flex; width: 10%;" name="Create" > -->
+        
+        <label>Invite Participants</label>
+        <form style="display: inline" action="/eventsList/{{ user.id }}/{{ event.id }}/invite/" method="post">
+            {% csrf_token %}
+            <input type="text" style="display: flex;" id="iuser" name="invited_user_id">
+            <input type="submit" style="display:flex; width: 10%;" name="add_user" >
+        </form>
 
+        <a class="button button2" href="/eventsList/{{ user.id }}/{{ event.id }}/edit/">Edit post</a>
+        <a class="button button3" href="/eventsList/{{ user.id }}/{{ event.id }}/delete/">Delete post</a>
     </ul>
-    {% endfor %}
-    {% endif %}
 </body>
 

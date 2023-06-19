@@ -50,15 +50,18 @@
     {% else %}
     {% for event in events %}
     <ul style="border-style: solid;background-color: white;position:relative;width: 750px;border: 15px solid green;padding: 50px;margin: 10px;">
-        <a style="border-style: hidden; text-decoration:brown" href="/eventsList/{{ user.id }}/{{ event.id }}/">{{event.user.username}} scheduled a event</a>
+        <h3 style="border-style: hidden" >{{event.user.username}} scheduled a event</h3>
+        <!-- <a style="border-style: hidden; text-decoration:brown" href="/eventsList/{{ user.id }}/{{ event.id }}/">{{event.user.username}} scheduled a event</a> -->
         <h4 style="border-style: hidden">Title- {{ event.title }}</h4>
         <p style="text-align: left;">Content - {{ event.description }}<p>
         <p style="text-align: left; color: darkorchid;">Start time - {{event.start_date_time}}</p>
         <p style="text-align: left; color: darkorchid;">End time - {{event.end_date_time}}</p>
         <!-- <input type="submit" style="display:flex; width: 10%;" name="Create" > -->
-
+        <a class="button button2" href="/eventsList/{{ user.id }}/invited/{{ event.id }}/accept/">Accept</a>
+        <a class="button button3" href="/eventsList/{{ user.id }}/invited/{{ event.id }}/decline/">Decline</a>
     </ul>
     {% endfor %}
     {% endif %}
+
 </body>
 

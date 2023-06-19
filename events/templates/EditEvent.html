@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        background-color: lightblue;
+    }
+    .button1 {background-color: #4CAF50;
+        font-size: 16px;}
+    p {
+        font-family: verdana;
+        font-size: 14px;
+        color: black
+    }
+    input {
+        width: 20%;
+        padding: 6px 10px;
+        margin: 8px 0;
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        display: inline;
+        }
+    .button {
+        border: 1px solid black;
+        background-color: rgb(80, 79, 133);
+        box-shadow: rgb(80, 79, 133);
+        border-radius: 5px;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration:solid;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+    li{
+        display: inline;
+        }
+</style>
+<body>
+    <nav style="background-color:#0e8436">
+        <div><ul>
+            <li>
+                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/'>My events</a>
+            </li>
+            <li>
+                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/invited/'>Invited events</a>
+            </li>
+            <li>
+                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/previous/'>Previous events</a>
+            </li>
+            <li>
+                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/running/'>Running events</a>
+            </li>
+            <li>
+                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/upcoming/'>Upcoming events</a>
+            </li>
+            <li>
+                <a class="button" style="color: #f8f9fa;" href='/logout/'>Logout</a>
+            </li>
+            </ul></div>
+    </nav>
+    <h2>Edit Event</h2>
+    <form style="display: inline" action="/eventsList/{{ user.id }}/{{ id }}/edit/" method="post">
+        {% csrf_token %}
+        <label>Title</label>
+        <input type="text" style="display:flex;" name="Title" id="title" placeholder="Enter the title of your post" value="{{ title }}">
+        <label>Description</label>
+        <input type="text" style="display:flex;" name="Content" id="content" placeholder="Enter the content of your post" value="{{ description }}">
+        <label>Start date-time</label>
+        <input type="datetime-local" style="display:flex;" id="start" name="start_date_time" value="{{ start_date_time }}">
+        <label>End date-time</label>
+        <input type="datetime-local" style="display:flex;" id="end" name="end_date_time" value="{{ end_date_time }}">
+        <input type="submit" style="display:flex; width: 10%;" name="Create" >
+    </form>
+</body>

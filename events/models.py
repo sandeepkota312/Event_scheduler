@@ -94,7 +94,7 @@ class Events(EventAbstract):
         return upcoming_events
 
     def __str__(self):
-        return f"{self.user} is invited for {self.title}"
+        return f"{self.user} scheduled a event {self.title}"
     
 class EventParticipant(models.Model):
     # event = models.ForeignKey(Events.id, on_delete=models.CASCADE) need to implement this at the end
@@ -109,7 +109,7 @@ class EventParticipant(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='invited')
 
     def __str__(self):
-        return f"{self.user.username} - {self.event.title}"
+        return f"{self.user.username} is invited for {self.event.title}"
     
     def get_invited_events(host_user_id):
         IDs=EventParticipant.objects.filter(user=User.objects.get(id=host_user_id),status='invited')

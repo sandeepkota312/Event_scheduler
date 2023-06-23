@@ -1,5 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="{% static 'likes.js' %}"></script>
+    
+    <title>Schedulify</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        li a:hover {
+            background-color: #111;
+        }
+        div.container {
+            text-align: center;
+        }
+        </style>
+</head>
 <style>
     body {
         background-color: lightblue;
@@ -41,26 +80,28 @@
 </style>
 <body>
     <nav style="background-color:#0e8436">
-        <div><ul>
-            <li>
-                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/'>My events</a>
-            </li>
-            <li>
-                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/invited/'>Invited events</a>
-            </li>
-            <li>
-                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/previous/'>Previous events</a>
-            </li>
-            <li>
-                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/running/'>Running events</a>
-            </li>
-            <li>
-                <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/upcoming/'>Upcoming events</a>
-            </li>
-            <li>
-                <a class="button" style="color: #f8f9fa;" href='/logout/'>Logout</a>
-            </li>
-            </ul></div>
+        <div>
+            <ul>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/'>My events</a>
+                </li>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/invited/'>Invited events</a>
+                </li>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/previous/'>Previous events</a>
+                </li>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/running/'>Running events</a>
+                </li>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/upcoming/'>Upcoming events</a>
+                </li>
+                <li style="float:right;">
+                    <a href='/logout/'>Logout</a>
+                </li>
+            </ul>
+        </div>
     </nav>
     <h2>Create a post</h2>
     <form style="display: inline" action="/eventsList/{{ user.id }}/eventcreate/" method="post">

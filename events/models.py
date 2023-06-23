@@ -120,26 +120,6 @@ class EventParticipant(models.Model):
         print('invted',invited_list)
         return invited_list
 
-    def get_accepted_user_list(self,event_id,host_user_id):
-        event=Events.objects.get(id=event_id)
-        if event.user.id == host_user_id:
-            IDs=EventParticipant.objects.filter(event=event,status='accepted')
-            accepted_list=[]
-            for id in IDs:
-                accepted_list.append(id.user)
-            return accepted_list
-        return []
-    
-    def get_rejected_user_list(self,event_id,host_user_id):
-        event=Events.objects.get(id=event_id)
-        if event.user.id == host_user_id:
-            IDs=EventParticipant.objects.filter(event=event,status='accepted')
-            accepted_list=[]
-            for id in IDs:
-                accepted_list.append(id.user)
-            return accepted_list
-        return []
-    
     @staticmethod
     def invite_user(event_id, host_user_id, invited_username):
         invited_user=User.objects.get(username=invited_username)
@@ -149,3 +129,25 @@ class EventParticipant(models.Model):
             EventParticipant.objects.create(event=event, user=invited_user)
         else:
             print('something went wrong')
+            
+    # def get_accepted_user_list(self,event_id,host_user_id):
+    #     event=Events.objects.get(id=event_id)
+    #     if event.user.id == host_user_id:
+    #         IDs=EventParticipant.objects.filter(event=event,status='accepted')
+    #         accepted_list=[]
+    #         for id in IDs:
+    #             accepted_list.append(id.user)
+    #         return accepted_list
+    #     return []
+    
+    # def get_rejected_user_list(self,event_id,host_user_id):
+    #     event=Events.objects.get(id=event_id)
+    #     if event.user.id == host_user_id:
+    #         IDs=EventParticipant.objects.filter(event=event,status='accepted')
+    #         accepted_list=[]
+    #         for id in IDs:
+    #             accepted_list.append(id.user)
+    #         return accepted_list
+    #     return []
+    
+    

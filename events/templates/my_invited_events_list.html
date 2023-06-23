@@ -16,52 +16,78 @@
     <script src="{% static 'likes.js' %}"></script>
     
     <title>Schedulify</title>
+    <style>
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+          background-color: #333;
+        }
+        
+        li a {
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+        }
+        
+        li a:hover {
+          background-color: #111;
+        }
+        div.container {
+            text-align: center;
+        }
+        </style>
 </head>
 <body>
     <nav style="background-color:#0e8436">
         <div>
             <ul>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/'>My events</a>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/'>My events</a>
                 </li>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/invited/'>Invited events</a>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/invited/'>Invited events</a>
                 </li>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/previous/'>Previous events</a>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/previous/'>Previous events</a>
                 </li>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/running/'>Running events</a>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/running/'>Running events</a>
                 </li>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/upcoming/'>Upcoming events</a>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/upcoming/'>Upcoming events</a>
                 </li>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/eventsList/{{ user.id }}/eventcreate/'>Add Event</a>
+                <li style="float:left;">
+                    <a href='/eventsList/{{ user.id }}/eventcreate/'>Add Event</a>
                 </li>
-                <li>
-                    <a class="button" style="color: #f8f9fa;" href='/logout/'>Logout</a>
+                <li style="float:right;">
+                    <a href='/logout/'>Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
-    {% if length == 0 %}
-    <p style="text-align: left;"> No Invited events so far</p>
-    {% else %}
-    {% for event in events %}
-    <ul style="border-style: solid;background-color: white;position:relative;width: 750px;border: 15px solid green;padding: 50px;margin: 10px;">
-        <h3 style="border-style: hidden" >{{event.user.username}} scheduled a event</h3>
-        <!-- <a style="border-style: hidden; text-decoration:brown" href="/eventsList/{{ user.id }}/{{ event.id }}/">{{event.user.username}} scheduled a event</a> -->
-        <h4 style="border-style: hidden">Title- {{ event.title }}</h4>
-        <p style="text-align: left;">Content - {{ event.description }}<p>
-        <p style="text-align: left; color: darkorchid;">Start time - {{event.start_date_time}}</p>
-        <p style="text-align: left; color: darkorchid;">End time - {{event.end_date_time}}</p>
-        <!-- <input type="submit" style="display:flex; width: 10%;" name="Create" > -->
-        <a class="button button2" href="/eventsList/{{ user.id }}/invited/{{ event.id }}/accept/">Accept</a>
-        <a class="button button3" href="/eventsList/{{ user.id }}/invited/{{ event.id }}/decline/">Decline</a>
-    </ul>
-    {% endfor %}
-    {% endif %}
+    <div class="container">
+        {% if length == 0 %}
+        <p style="text-align: left;"> No Invited events so far</p>
+        {% else %}
+        {% for event in events %}
+        <ul style="border-style: solid;background-color: white; position:relative; width: 750px;border: 15px solid #333; padding: 50px; margin: 10px;">
+            <a style="float:left; font-family: Arial, Helvetica, sans-serif; text-decoration: none;" href="/eventsList/{{ user.id }}/{{ event.id }}/"><b>{{event.user.username}} scheduled a event</b></a>
+            <h4 style="border-style: hidden; font-size: large; text-align: center;">{{ event.title }}</h4>
+            <p style="text-align: left;">Content - {{ event.description }}<p>
+            <p style="text-align: left; color: darkorchid;">Start time - {{event.start_date_time}}</p>
+            <p style="text-align: left; color: darkorchid;">End time - {{event.end_date_time}}</p>
+            <a class="button button2" href="/eventsList/{{ user.id }}/invited/{{ event.id }}/accept/">Accept</a>
+            <a class="button button3" href="/eventsList/{{ user.id }}/invited/{{ event.id }}/decline/">Decline</a>
+        </ul>
+        {% endfor %}
+        {% endif %}
+    </div>
 
+
+    
 </body>
 
